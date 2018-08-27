@@ -2,57 +2,50 @@
   <div>
     <p v-if="posts && posts.length">{{posts}}</p>
 
-    <button type="button" @click="hello()">click</button>
+    <button type="button" @click="welcome()">welcome</button>
+    <button type="button" @click="clients()">clients</button>
     <button type="button" @click="clear()">clear</button>
   </div>
 </template>
 
 <script>
-// export default {
-//   name: 'HelloWorld',
-//   data () {
-//     return {
-//       msg: 'Welcome to Your Vue.js App'
-//     }
-//   }
-// }
 /* eslint-disable */
-// import axios from "axios";
-import { AXIOS } from './http-commons'
+import axios from "axios";
+// import { AXIOS } from './http-commons'
 
 export default {
   data() {
     return {
-      posts: [],
+      posts: null,
       errors: []
     };
   },
 
-  // Fetches posts when the component is created.
   methods: {
-      hello: function() {
-        AXIOS
-          .get(`http://localhost:8080/clients`)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.posts = response.data;
-          })
-          .catch(e => {
-            this.errors.push(e);
-          });
-
-        // async / await version (created() becomes async created())
-        //
-        // try {
-        //   const response = await axios.get(`http://jsonplaceholder.typicode.com/posts`)
-        //   this.posts = response.data
-        // } catch (e) {
-        //   this.errors.push(e)
-        // }
-      },
-      clear: function() {
-        this.posts = []
-      }
+    clients: function() {
+      axios
+        .get(`/api/clients`)
+        .then(response => {
+          console.error("response => ", response.data);
+          this.posts = response.data;
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    },
+    clear: function() {
+      this.posts = [];
+    },
+    welcome: () => {
+      axios.get(`/api/`).then((response) => {
+        console.error("response => ",response, response.data);
+        this.posts = [];
+        this.posts = ["sam"];
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
+    }
   }
 };
 </script>

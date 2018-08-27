@@ -1,6 +1,4 @@
-package com.headhunter.demo.models;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
+package com.headhunter.demo.bean;
 
 public class TestModel {
     private String name;
