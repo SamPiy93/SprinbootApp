@@ -1,9 +1,7 @@
 <template>
   <div>
     <p v-if="posts && posts.length">{{posts}}</p>
-
-    <button type="button" @click="welcome()">welcome</button>
-    <button type="button" @click="clients()">clients</button>
+    <button type="button" @click="headhunterList()">Headhunters</button>
     <button type="button" @click="clear()">clear</button>
   </div>
 </template>
@@ -22,9 +20,9 @@ export default {
   },
 
   methods: {
-    clients: function() {
+    headhunterList: function() {
       axios
-        .get(`/api/clients`)
+        .get(`/api/headhunter/list`)
         .then(response => {
           console.error("response => ", response.data);
           this.posts = response.data;
@@ -36,16 +34,6 @@ export default {
     clear: function() {
       this.posts = [];
     },
-    welcome: () => {
-      axios.get(`/api/`).then((response) => {
-        console.error("response => ",response, response.data);
-        this.posts = [];
-        this.posts = ["sam"];
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
-    }
   }
 };
 </script>
