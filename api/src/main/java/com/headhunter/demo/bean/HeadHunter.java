@@ -2,16 +2,9 @@ package com.headhunter.demo.bean;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "headhunter")
 public class HeadHunter {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
-    @Column
     private String name;
-    @Column
     private String description;
 
     public HeadHunter() {
